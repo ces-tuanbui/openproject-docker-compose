@@ -121,6 +121,8 @@ services:
     <<: *app
     command: "./docker/prod/seeder"
     restart: on-failure
+    # seeder exits after migrating; keep Coolify from reporting the stack as degraded
+    exclude_from_hc: true
     networks:
       - backend
 
